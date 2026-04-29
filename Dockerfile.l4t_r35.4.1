@@ -118,7 +118,7 @@ USER root
 WORKDIR ${HOME}/uhd/host/build
 
 RUN cmake -DCMAKE_INSTALL_PREFIX=/usr/local .. \
-    && make -j3 \
+    && make -j$(nproc) \
     && make test \ 
     && sudo make install \
     && sudo ldconfig
@@ -127,7 +127,7 @@ RUN cmake -DCMAKE_INSTALL_PREFIX=/usr/local .. \
 WORKDIR ${HOME}/volk/build
 
 RUN cmake -DCMAKE_BUILD_TYPE=Release -DPYTHON_EXECUTABLE=$(which python3) .. \
-    && make \
+    && make -j$(nproc) \
     && make test \
     && sudo make install \
     && sudo ldconfig
@@ -141,14 +141,14 @@ RUN cmake \
     -DENABLE_GRC=ON \
     -DPYTHON_EXECUTABLE=$(which python3) \
     .. \
-    && make -j8 \
+    && make -j$(nproc) \
     && sudo make install \
     && sudo ldconfig \
     && volk_profile
 
 # configure kernel 
-RUN echo "net.core.rmem_max=1000000000" >> /etc/sysctl.conf \
-    && echo "net.core.wmem_max=1000000000" >> /etc/sysctl.conf \
+RUN echo "net.core.rmem_max=24912805" >> /etc/sysctl.conf \
+    && echo "net.core.wmem_max=24912805" >> /etc/sysctl.conf \
     && echo "kernel.sched_rt_runtime_us=-1" >> /etc/sysctl.conf 
 
 # write GNURadio config
