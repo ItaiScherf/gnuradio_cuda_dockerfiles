@@ -16,11 +16,11 @@ services:
     runtime:nvidia
     deploy:
       resources:
-        reservation:
+        reservations:
           devices:
             - driver: nvidia
               count: 1
-              cpapbilities: ["gpu"]
+              capabilities: ["gpu"]
     cap_add:
       - SYS_NICE
       - SYS_RESOURCE
@@ -34,5 +34,5 @@ services:
     ipc: host
     shm_size: 1024m
     pid: host
-    stding_open: true
+    stdin_open: true
     tty: true
