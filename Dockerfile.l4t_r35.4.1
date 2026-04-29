@@ -40,9 +40,16 @@ RUN if [ "${SSH_PRIVATE_KEY}" != "" ] && [ "${SSH_KNOWN_HOSTS}" != "" ]; then \
 
 # install debians 
 RUN sudo apt update && sudo apt install -y \
+    autoconf \
+    automake \
+    build-essential \
+    ccache \
+    cpufrequtils \
     cmake \
     doxygen \
+    ethtool \
     g++ \
+    inetutils-tools \
     gir1.2-pango-1.0 \
     gir1.2-gtk-3.0 \
     gobject-introspection \
@@ -67,6 +74,8 @@ RUN sudo apt update && sudo apt install -y \
     libusb-1.0-0-dev \
     libudev-dev \
     libzmq3-dev \
+    libncurses5 \
+    libncurses5-dev \
     nano \
     ninja-build \
     pybind11-dev \
@@ -88,6 +97,8 @@ RUN sudo apt update && sudo apt install -y \
     python3-packaging \
     python3-jsonschema \
     python3-qtpy \
+    python3-requests \
+    python3-ruamel.yaml \
     soapysdr-tools \
     sudo \
     swig \
