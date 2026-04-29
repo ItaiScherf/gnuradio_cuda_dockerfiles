@@ -23,7 +23,7 @@ RUN mkdir -p ${HOME} \
 
 # removing python2    
 RUN rm -f /usr/bin/python \
-    && ln -s /usr/bin/python /usr/bin/python
+    && ln -s /usr/bin/python3 /usr/bin/python
 
 # copying ssh info into correct files to clone with USER, if cloning as root - copy to /root/.ssh
 RUN if [ "${SSH_PRIVATE_KEY}" != "" ] && [ "${SSH_KNOWN_HOSTS}" != "" ]; then \
